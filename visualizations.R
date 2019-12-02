@@ -9,7 +9,7 @@ library(dplyr)
 library(cowplot)
 library(ggplot2)
 
-results <- read.csv('C:\Users\prantor\work\src\github.com\prantoran\DATA501-Final-Project/survey_results_public.csv')
+results <- read.csv('/home/prantoran/datasets/survey_results_public.csv')
 
 results %>% group_by(Student)
 
@@ -83,8 +83,8 @@ results %>% filter(Employment %in% 'Employed full-time') %>%
   filter(!is.na(DevType)) %>%
   filter(!is.na(Gender), Gender %in% c('Male','Female')) %>% 
   select(DevType,ConvertedSalary,Gender) %>%
-  mutate(DevType = stringr::str_split(DevType, pattern = ";")) %>%
-  tidytext::unnest(DevType) %>%
+  mutate(DevType = str_split(DevType, pattern = ";")) %>%
+  unnest(DevType) %>%
   group_by(DevType,Gender) %>%
   summarise(Median_Salary = median(ConvertedSalary,na.rm = TRUE)) %>%
   arrange(desc(Median_Salary)) %>%
