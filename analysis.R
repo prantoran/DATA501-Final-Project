@@ -69,32 +69,4 @@ maleSalaries
 htest2 = t.test(femaleSalaries$ConvertedSalary, maleSalaries$ConvertedSalary)
 htest2
 
-## relation between YearsCoding and Salary
-  
-# yearsCode <- survey_data %>% select(YearsCoding, ConvertedSalary)
-
-# yearsCode = na.omit(yearsCode)
-# yearsCode
-
-# labels <- yearsCode %>% select(YearsCoding)
-# labels = labels[which(!duplicated(labels))]
-# labels
-
-# typeof(labels)
-# dim(labels)
-# # using the first number of range as representative of range
-# i <- 0
-# for (names in labels[1][1]) {
-#   i <- i + 1
-#   print(i)
-#   print(labels[1][1][i])
-  
-  
-# }
-
-
-
-
-# require(devtools)
-# devtools::install_github("mkuhn/dict")
 

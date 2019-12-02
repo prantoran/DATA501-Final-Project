@@ -75,22 +75,3 @@ results %>% filter(Employment %in% 'Employed full-time') %>%
        y = "Log of Annual Salary in USD",
        title = "Annual Salary in USD - by Country") 
 
-
-install.packages("devtools")
-devtools::install_github("rstudio/shiny")
-
-results %>% filter(Employment %in% 'Employed full-time') %>% 
-  filter(!is.na(DevType)) %>%
-  filter(!is.na(Gender), Gender %in% c('Male','Female')) %>% 
-  select(DevType,ConvertedSalary,Gender) %>%
-  mutate(DevType = str_split(DevType, pattern = ";")) %>%
-  unnest(DevType) %>%
-  group_by(DevType,Gender) %>%
-  summarise(Median_Salary = median(ConvertedSalary,na.rm = TRUE)) %>%
-  arrange(desc(Median_Salary)) %>%
-  ungroup() %>%
-  mutate(DevType = reorder(DevType,Median_Salary)) %>%
-  head(20) %>% 
-  hchart('column',hcaes('DevType','Median_Salary', group = 'Gender')) %>% 
-  hc_colors(c("darkorange", "darkgray")) %>%  
-  hc_title(text = "Median Salary by Developer Type wrt Gender")
